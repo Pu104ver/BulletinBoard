@@ -1,0 +1,11 @@
+{% extends 'default.html' %}
+
+{% block title %}Объявления{% endblock %}
+
+{% block content %}
+    <ul>
+    {% for ad in ads %}
+        <li>{{ ad.title }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}
