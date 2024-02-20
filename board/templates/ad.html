@@ -1,0 +1,25 @@
+{% extends 'default.html' %}
+{% load tz %}
+
+{% block title %}
+Объявление
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">{{ ad.title }}</h2>
+                    <p class="card-text"><small class="text-muted">Автор: {{ ad.user_profile }}</small></p>
+                    <p class="card-text"><small class="text-muted">Дата публикации: {{ ad.created_at|timezone:"Europe/Moscow"|date:"d F Y H:i" }}</small></p>
+                    <p class="card-text">Категория: {{ ad.category }}</p>
+                    <p class="card-text">{{ ad.content }}</p>
+                    <a href="#" class="btn btn-primary">Откликнуться</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
