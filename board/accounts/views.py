@@ -1,5 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
@@ -13,11 +15,23 @@ def register(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
 
-        # Генерируем случайный код подтверждения
-        confirmation_code = random.randint(100000, 999999)
-        print(f'{confirmation_code=}')
+        if User.objects.filter(username=username).exists():
+            return render(request, 'registration/register.html',
+                          {'error': 'Пользователь с таким именем уже существует'})
+        elif User.objects.filter(email=email).exists():
+            return render(request, 'registration/register.html',
+                          {'error': 'Пользователь с таким адресом электронной почты уже существует'})
 
-        # Отправляем код подтверждения на почту
+        try:
+            # Проверяем пароль с использованием встроенных правил проверки
+            validate_password(password)
+        except ValidationError as e:
+            # Если пароль не соответствует правилам, выводим сообщение об ошибке
+            error_message = ', '.join(e.messages)
+            return render(request, 'registration/register.html', {'error': error_message})
+
+        confirmation_code = random.randint(100000, 999999)
+
         send_mail(
             'Код подтверждения регистрации',
             f'Ваш код подтверждения: {confirmation_code}',
@@ -26,13 +40,11 @@ def register(request):
             fail_silently=False,
         )
 
-        # Сохраняем данные пользователя и код подтверждения в сессии
         request.session['username'] = username
         request.session['email'] = email
         request.session['password'] = password
         request.session['confirmation_code'] = confirmation_code
 
-        # Перенаправляем на страницу ввода кода подтверждения
         return redirect('confirm_code')
     else:
         return render(request, 'registration/register.html', {'user': request.user})
@@ -40,32 +52,21 @@ def register(request):
 
 def confirm_code(request):
     if request.method == 'POST':
-        # Получаем введенный пользователем код
         entered_code = request.POST.get('code')
 
-        # Получаем данные пользователя и код подтверждения из сессии
         username = request.session.get('username')
         email = request.session.get('email')
         password = request.session.get('password')
         confirmation_code = request.session.get('confirmation_code')
 
-        # Проверяем, совпадает ли введенный код с кодом подтверждения
         if str(confirmation_code) == entered_code:
-            # Создаем пользователя
             user = User.objects.create_user(username=username, email=email, password=password)
             user.save()
 
-            # Аутентификация пользователя после успешной регистрации
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
 
-            # Очищаем данные из сессии
-            # del request.session['username']
-            # del request.session['email']
-            # del request.session['password']
-            # del request.session['confirmation_code']
-            # Перенаправляем на страницу успешной регистрации
             return redirect('/')
         else:
             # Возвращаем ошибку, если код неверный
@@ -83,16 +84,18 @@ def login_user(request):
 
         if user is not None:
             login(request, user)
-            # Перенаправляем пользователя на нужную страницу после входа
             return redirect('/')
         else:
-            # Если пользователь не найден, выводим сообщение об ошибке
             messages.error(request, 'Неправильное имя пользователя или пароль.')
-            return redirect('login')  # Можно указать другое имя маршрута для страницы входа
+            return redirect('login')
     else:
         return render(request, 'registration/login.html')
 
 
 def logout_user(request):
-    logout(request)
-    return redirect('logout')
+    if request.method == 'POST':
+        logout(request)
+        return redirect('/')
+    else:
+        return render(request, 'registration/logout.html')
+

@@ -1,0 +1,29 @@
+{% extends 'default.html' %}
+
+{% block title %}
+    Submit Response
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <h2>Подтвердите отправку отклика</h2>
+    <p>Параметры объявления</p>
+    <p>Выложил: {{ ad.user_profile }}</p>
+    <p>Заголовок: {{ ad.title }}</p>
+    <p>Содержимое: {{ ad.content }}</p>
+
+    <form method="post" action="{% url 'submit_response' ad.id %}">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="btn btn-primary">Подтвердить</button>
+        <a href="/" class="btn btn-secondary">Отмена</a>
+    </form>
+</div>
+{% endblock %}

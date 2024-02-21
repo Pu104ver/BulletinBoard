@@ -31,25 +31,31 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'ads_list' %}">Главная</a>
                         </li>
-                        {% comment %}
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'my_posts' %}">Мои посты</a>
                         </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Отклики
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{% url 'my_responses' %}">Мои отклики</a>
+
                                 <a class="dropdown-item" href="{% url 'responses_to_my_ads' %}">Отклики на мои объявления</a>
                             </div>
                         </li>
-                        {% endcomment %}
                         {% if user.is_authenticated %}
                             <li class="nav-item">
-                                <a class="nav-link" href="/accounts/logout">{{ user.username }} {% trans 'Выход' %}</a>
+                                <span class="nav-link">{{ user.username }}</span>
                             </li>
-                            {% else %}
+                            <li class="nav-item">
+                                <form action="{% url 'logout' %}" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="nav-link btn btn-link">Выйти</button>
+                                </form>
+                            </li>
+                        {% else %}
                             <li class="nav-item">
                                 <a class="nav-link" href="/accounts/login">{% trans 'Вход' %}</a>
                             </li>
@@ -89,6 +95,8 @@
                 </div>
             </div>
         </footer>
-
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </body>
 </html>

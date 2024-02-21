@@ -4,18 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81744ebb-5b74-4074-a615-1097ce853419" name="Changes" comment="v 0.1">
-      <change afterPath="$PROJECT_DIR$/board/ads/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/board/templates/ad.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/board/templates/includes/navbar.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/board/templates/registration/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="81744ebb-5b74-4074-a615-1097ce853419" name="Changes" comment="v 0.2">
+      <change afterPath="$PROJECT_DIR$/board/ads/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/ads/signals.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/templates/ad_create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/templates/ad_delete.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/templates/ad_update.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/templates/my_responses.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/templates/my_responses_to_ads.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/templates/submit_response.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/templates/user_ads.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/accounts/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/accounts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/ads/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/ads/apps.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/ads/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/ads/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/ads/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/ads/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/ads/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/ads/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/board/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/board/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/board/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/board/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/templates/ad.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/ad.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/templates/ads.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/ads.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/templates/default.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/default.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/registration/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/templates/registration/logout.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/registration/logout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/templates/registration/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/registration/register.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,24 +45,24 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2caNGuOj1QszesjDlc0LfwKFx2B" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/bigbeautifulcapybara/PycharmProjects/Board/board/static"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/bigbeautifulcapybara/PycharmProjects/Board/board/static&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/board/static" />
@@ -83,11 +95,20 @@
       <option name="project" value="LOCAL" />
       <updated>1708360393076</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="v 0.2">
+      <option name="closed" value="true" />
+      <created>1708442487313</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1708442487314</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="v 0.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="v 0.1" />
+    <MESSAGE value="v 0.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="v 0.2" />
   </component>
 </project>

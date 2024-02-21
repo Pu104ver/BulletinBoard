@@ -1,0 +1,14 @@
+{% extends 'default.html' %}
+{% block title %}Удалить отклик{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Отмена отклика</h1>
+    <p>Вы уверены, что хотите отменить ваш отклик?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Да, отменить</button>
+        <a href="{% url 'my_responses' %}" class="btn btn-secondary">Отмена</a>
+    </form>
+</div>
+{% endblock %}

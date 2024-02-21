@@ -1,0 +1,28 @@
+{% extends 'default.html' %}
+{% block title %}Объявления пользователя{% endblock %}
+
+{% block content %}
+<div class="container">
+    <p>Объявления {{ user.username }}</p>
+    <a href="{% url 'ad_create' %}" class="btn btn-success mb-3">Создать новое объявление</a>
+    {% if ads %}
+        <div class="row">
+            {% for ad in ads %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ ad.title }}</h5>
+                        <p class="card-text">{{ ad.content|truncatechars:100 }}</p>
+                        <a href="{% url 'ads_detail' pk=ad.id %}" class="btn btn-primary">Подробнее</a>
+                        <a href="{% url 'ad_update' pk=ad.id %}" class="btn btn-warning">Редактировать</a>
+                        <a href="{% url 'ad_delete' pk=ad.id %}" class="btn btn-danger">Удалить</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>У вас пока нет объявлений.</p>
+    {% endif %}
+</div>
+{% endblock %}

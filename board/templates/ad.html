@@ -16,7 +16,11 @@
                     <p class="card-text"><small class="text-muted">Дата публикации: {{ ad.created_at|timezone:"Europe/Moscow"|date:"d F Y H:i" }}</small></p>
                     <p class="card-text">Категория: {{ ad.category }}</p>
                     <p class="card-text">{{ ad.content }}</p>
-                    <a href="#" class="btn btn-primary">Откликнуться</a>
+                    {% if not ad.user_profile == request.user.userprofile %}
+                        <a href="{% url 'submit_response' ad.id %}" class="btn btn-primary">Откликнуться</a>
+                    {% else %}
+                        <p class="text-muted">Это ваше объявление</p>
+                    {% endif %}
                 </div>
             </div>
         </div>

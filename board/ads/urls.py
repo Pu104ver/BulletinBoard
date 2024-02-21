@@ -1,17 +1,18 @@
-from django.urls import path
+from django.urls import path, include
 from django.views.decorators.cache import cache_page
 
-from .views import AdsList, AdsDetail
+from .views import AdsList, AdsDetail, MyPostsListView, AdCreateView, AdUpdateView, AdDeleteView, SubmitResponseView, \
+    MyResponsesListView, MyResponsesToAdsListView, ResponseDeleteView
 
 urlpatterns = [
     path('', AdsList.as_view(), name='ads_list'),
     path('<int:pk>', AdsDetail.as_view(), name='ads_detail'),
-    # path('search/', cache_page(5 * 60)(PostSearchView.as_view()), name='post_search'),
-    # path('news/create/', cache_page(5 * 60)(NewsCreate.as_view()), name='news_create'),
-    # path('news/<int:pk>/update/', cache_page(5 * 60)(NewsUpdate.as_view()), name='news_update'),
-    # path('news/<int:pk>/delete/', cache_page(5 * 60)(NewsDelete.as_view()), name='news_delete'),
-    # path('article/create/', cache_page(5 * 60)(ArticleCreate.as_view()), name='article_create'),
-    # path('article/<int:pk>/update/', cache_page(5 * 60)(ArticleUpdate.as_view()), name='article_update'),
-    # path('article/<int:pk>/delete/', cache_page(5 * 60)(ArticleDelete.as_view()), name='article_delete'),
-
+    path('my-posts', MyPostsListView.as_view(), name='my_posts'),
+    path('create/', AdCreateView.as_view(), name='ad_create'),
+    path('<int:pk>/update/', AdUpdateView.as_view(), name='ad_update'),
+    path('<int:pk>/delete/', AdDeleteView.as_view(), name='ad_delete'),
+    path('<int:ad_id>/submit_response/', SubmitResponseView.as_view(), name='submit_response'),
+    path('my-responses/', MyResponsesListView.as_view(), name='my_responses'),
+    path('responses-to-me/', MyResponsesToAdsListView.as_view(), name='responses_to_my_ads'),
+    path('my-responses/<int:pk>/delete/', ResponseDeleteView.as_view(), name='response_delete'),
 ]

@@ -4,18 +4,42 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
-        {% for ad in ads %}
-        <div class="col-md-4 mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">{{ ad.title }}</h5>
-                    <p class="card-text">{{ ad.content|truncatechars:100 }}</p>
-                    <a href="{% url 'ads_detail' pk=ad.id %}" class="btn btn-primary">Подробнее</a>
+    <p>Все объявления</p>
+    {% if ads %}
+        <div class="row">
+            {% for ad in ads %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ ad.title }}</h5>
+                        <p class="card-text"><small class="text-muted">Автор: {{ ad.user_profile }}</small></p>
+                        <p class="card-text">{{ ad.content|truncatechars:100 }}</p>
+                        <a href="{% url 'ads_detail' pk=ad.id %}" class="btn btn-primary">Подробнее</a>
+                    </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
+    {% else %}
+        <p>У вас пока нет объявлений.</p>
+    {% endif %}
 </div>
+   {% if page_obj.has_previous %}
+       <a href="?page=1">1</a>
+       {% if page_obj.previous_page_number != 1 %}
+           ...
+           <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+       {% endif %}
+   {% endif %}
+
+   {{ page_obj.number }}
+
+   {% if page_obj.has_next %}
+       <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+       {% if paginator.num_pages != page_obj.next_page_number %}
+           ...
+           <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+       {% endif %}
+   {% endif %}
 {% endblock %}
+

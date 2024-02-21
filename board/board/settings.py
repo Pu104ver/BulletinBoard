@@ -29,6 +29,10 @@ INSTALLED_APPS = [
 
     'django.contrib.sites',
     'django.contrib.flatpages',
+    'django_filters',
+
+    'ckeditor',
+    'ckeditor_uploader',
 
     'ads',
     'accounts',
@@ -37,6 +41,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.yandex',
+
 ]
 
 MIDDLEWARE = [
@@ -133,7 +138,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
@@ -166,3 +172,8 @@ EMAIL_SUBJECT_PREFIX = 'NewsPortal. '
 DEFAULT_FROM_EMAIL = "kinopoisk.y4ndex3@yandex.ru"
 
 SERVER_EMAIL = "kinopoisk.y4ndex3@yandex.ru"
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+
+

@@ -1,0 +1,47 @@
+{% extends 'default.html' %}
+{% block title %}Мои отклики{% endblock %}
+
+{% block content %}
+
+
+<div class="container">
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <h1>Мои отклики</h1>
+    <ul>
+        {% for response in responses %}
+            <li>
+                <p>Объявление: <a href="{% url 'ads_detail' pk=response.ad.id %}">{{ response.ad.title }}</a> [{{ response.ad.user_profile }}]</p>
+                <p>Отправлен: {{ response.created_at }}</p>
+                <p>Сообщение: {{ response.content }}</p>
+                <a href="{% url 'response_delete' pk=response.id %}" class="btn btn-danger">Отменить</a>
+
+            </li>
+        {% empty %}
+            <p>Откликов не найдено.</p>
+        {% endfor %}
+    </ul>
+</div>
+   {% if page_obj.has_previous %}
+       <a href="?page=1">1</a>
+       {% if page_obj.previous_page_number != 1 %}
+           ...
+           <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+       {% endif %}
+   {% endif %}
+
+   {{ page_obj.number }}
+
+   {% if page_obj.has_next %}
+       <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+       {% if paginator.num_pages != page_obj.next_page_number %}
+           ...
+           <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+       {% endif %}
+   {% endif %}
+{% endblock %}

@@ -1,3 +1,5 @@
+from ckeditor_uploader.fields import RichTextUploadingField
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -13,7 +15,7 @@ class UserProfile(models.Model):
 class Ad(models.Model):
     user_profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    content = models.TextField()
+    content = RichTextUploadingField()
     category_choices = [
         ('TANKS', 'Танки'),
         ('HEALERS', 'Хилы'),
@@ -43,4 +45,4 @@ class Response(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Response to {self.ad} by {self.user_profile}"
+        return f"[{self.user_profile}]: {self.ad}"
