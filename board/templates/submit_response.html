@@ -1,4 +1,5 @@
 {% extends 'default.html' %}
+{% load custom_filters %}
 
 {% block title %}
     Submit Response
@@ -17,7 +18,8 @@
     <p>Параметры объявления</p>
     <p>Выложил: {{ ad.user_profile }}</p>
     <p>Заголовок: {{ ad.title }}</p>
-    <p>Содержимое: {{ ad.content }}</p>
+    <p class="card-text">Содержимое: {{ ad.content|limit_content:100 }}</p>
+
 
     <form method="post" action="{% url 'submit_response' ad.id %}">
         {% csrf_token %}

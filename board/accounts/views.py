@@ -1,10 +1,11 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
+
 import random
 
 
@@ -90,12 +91,4 @@ def login_user(request):
             return redirect('login')
     else:
         return render(request, 'registration/login.html')
-
-
-def logout_user(request):
-    if request.method == 'POST':
-        logout(request)
-        return redirect('/')
-    else:
-        return render(request, 'registration/logout.html')
 

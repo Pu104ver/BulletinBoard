@@ -16,3 +16,10 @@ class AdForm(forms.ModelForm):
     class Meta:
         model = Ad
         fields = ['title', 'content', 'category']
+
+
+class UserAdsForm(forms.ModelForm):
+    content = RichTextUploadingField
+    class Meta:
+        model = Ad
+        fields = ['title', 'content', 'category']

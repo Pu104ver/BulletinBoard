@@ -8,7 +8,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django_filters.views import FilterView
 
 from .filters import ResponseFilter
-from .forms import ResponseForm, AdForm
+from .forms import ResponseForm, AdForm, UserAdsForm
 from .models import Ad, Response
 
 
@@ -17,13 +17,20 @@ class AdsList(ListView):
     ordering = '-created_at'
     template_name = 'ads.html'
     context_object_name = 'ads'
-    paginate_by = 9
+    paginate_by = 6
 
 
 class AdsDetail(DetailView):
     model = Ad
     template_name = 'ad.html'
     context_object_name = 'ad'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        ad = self.get_object()
+        user_response = Response.objects.filter(ad=ad, user_profile=self.request.user.userprofile).first()
+        context['user_response'] = user_response
+        return context
 
 
 class MyPostsListView(LoginRequiredMixin, ListView):
@@ -34,6 +41,10 @@ class MyPostsListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return super().get_queryset().filter(user_profile=self.request.user.userprofile)
+
+    def form_valid(self, form):
+        form.instance.user_profile = self.request.user.userprofile
+        return super().form_valid(form)
 
 
 class AdCreateView(LoginRequiredMixin, CreateView):
@@ -46,21 +57,16 @@ class AdCreateView(LoginRequiredMixin, CreateView):
         form.instance.user_profile = self.request.user.userprofile
         return super().form_valid(form)
 
-# class AdCreateView(LoginRequiredMixin, CreateView):
-#     model = Ad
-#     template_name = 'ad_create.html'
-#     fields = ['title', 'content', 'category']
-#     success_url = reverse_lazy('my_posts')
-#
-#     def form_valid(self, form):
-#         form.instance.user_profile = self.request.user.userprofile
-#         return super().form_valid(form)
 
 class AdUpdateView(LoginRequiredMixin, UpdateView):
     model = Ad
     template_name = 'ad_update.html'
-    fields = ['title', 'content', 'category']
+    form_class = AdForm
     success_url = reverse_lazy('my_posts')
+
+    def form_valid(self, form):
+        form.instance.user_profile = self.request.user.userprofile
+        return super().form_valid(form)
 
 
 class AdDeleteView(LoginRequiredMixin, DeleteView):
@@ -97,12 +103,10 @@ class SubmitResponseView(LoginRequiredMixin, View):
                 response.save()
                 messages.success(request, "Отклик успешно добавлен.")
 
-                # Уведомление пользователя об отклике на его объявление
-                subject = 'Новый отклик на ваше объявление'
-                message = f'Пользователь {request.user.username} оставил отклик на ваше объявление "{ad.title}".'
-                sender_email = None
-                recipient_email = ad.user_profile.user.email  # Получатель письма - владелец объявления
-                send_mail(subject, message, sender_email, [recipient_email], fail_silently=False)
+                # # Уведомление автора об отклике на его объявление
+                # send_mail_to_the_author_of_the_response(request, ad)
+                # # Уведомление отправителя о новом отклике с его аккаунта
+                # send_mail_to_the_sender_of_the_response(request, ad)
 
         return redirect('my_responses')
 
@@ -111,16 +115,12 @@ class MyResponsesListView(LoginRequiredMixin, ListView):
     model = Response
     template_name = 'my_responses.html'
     context_object_name = 'responses'
+
     paginate_by = 3
 
     def get_queryset(self):
-        current_user_profile = self.request.user.userprofile
-
-        queryset = Response.objects.filter(user_profile=current_user_profile)
-
-        return queryset
-
-        # return Response.objects.filter(user_profile=self.request.user.userprofile)
+        queryset = super().get_queryset().filter(user_profile=self.request.user.userprofile)
+        return queryset.order_by('-created_at')
 
 
 class MyResponsesToAdsListView(LoginRequiredMixin, FilterView):

@@ -15,9 +15,15 @@
                     <p class="card-text"><small class="text-muted">Автор: {{ ad.user_profile }}</small></p>
                     <p class="card-text"><small class="text-muted">Дата публикации: {{ ad.created_at|timezone:"Europe/Moscow"|date:"d F Y H:i" }}</small></p>
                     <p class="card-text">Категория: {{ ad.category }}</p>
-                    <p class="card-text">{{ ad.content }}</p>
+                    <p class="card-text">{{ ad.content|safe }}</p>
                     {% if not ad.user_profile == request.user.userprofile %}
-                        <a href="{% url 'submit_response' ad.id %}" class="btn btn-primary">Откликнуться</a>
+                        {% if user_response %}
+                            <p class="text-muted">Вы уже оставляли отклик на это объявление
+                                <a href="{% url 'response_delete' pk=user_response.id %}" class="btn btn-danger">Отменить</a>
+                            </p>
+                        {% else %}
+                            <a href="{% url 'submit_response' ad.id %}" class="btn btn-primary">Откликнуться</a>
+                        {% endif %}
                     {% else %}
                         <p class="text-muted">Это ваше объявление</p>
                     {% endif %}
