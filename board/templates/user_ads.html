@@ -1,11 +1,13 @@
 {% extends 'default.html' %}
 {% load custom_filters %}
 
-{% block title %}Объявления пользователя{% endblock %}
+{% block title %}
+    Объявления пользователя
+{% endblock %}
 
 {% block content %}
 <div class="container">
-    <p>Объявления {{ user.username }}</p>
+    <p class="mb-3">Объявления пользователя: {{ user.username }}</p>
     <a href="{% url 'ad_create' %}" class="btn btn-success mb-3">Создать новое объявление</a>
     {% if ads %}
         <div class="row">
@@ -15,12 +17,13 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ ad.title }}</h5>
                         <p class="card-text">{{ ad.content|limit_content:100 }}</p>
-                        {% comment %}
-                        <p class="card-text">{{ ad.content|safe }}</p>
-                        {% endcomment %}
-                        <a href="{% url 'ads_detail' pk=ad.id %}" class="btn btn-primary">Подробнее</a>
-                        <a href="{% url 'ad_update' pk=ad.id %}" class="btn btn-warning">Редактировать</a>
-                        <a href="{% url 'ad_delete' pk=ad.id %}" class="btn btn-danger">Удалить</a>
+                        <div class="d-flex flex-column">
+                            <a href="{% url 'ads_detail' pk=ad.id %}" class="btn btn-primary mb-2">Подробнее</a>
+                            <div class="d-flex justify-content-between">
+                                <a href="{% url 'ad_update' pk=ad.id %}" class="btn btn-warning mr-2 flex-grow-1">Редактировать</a>
+                                <a href="{% url 'ad_delete' pk=ad.id %}" class="btn btn-danger flex-grow-1">Удалить</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -30,4 +33,24 @@
         <p>У вас пока нет объявлений.</p>
     {% endif %}
 </div>
+
+<nav class="pagination justify-content-center mt-4">
+    {% if page_obj.has_previous %}
+        <a href="?page=1" class="page-link">1</a>
+        {% if page_obj.previous_page_number != 1 %}
+            <span class="page-link">...</span>
+            <a href="?page={{ page_obj.previous_page_number }}" class="page-link">{{ page_obj.previous_page_number }}</a>
+        {% endif %}
+    {% endif %}
+
+    <span class="page-link active">[{{ page_obj.number }}]</span>
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="page-link">{{ page_obj.next_page_number }}</a>
+        {% if paginator.num_pages != page_obj.next_page_number %}
+            <span class="page-link">...</span>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">{{ page_obj.paginator.num_pages }}</a>
+        {% endif %}
+    {% endif %}
+</nav>
 {% endblock %}

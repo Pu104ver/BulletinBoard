@@ -1,8 +1,9 @@
 from django.urls import path, include
 from django.views.decorators.cache import cache_page
 
+from news.views import subscriptions
 from .views import AdsList, AdsDetail, MyPostsListView, AdCreateView, AdUpdateView, AdDeleteView, SubmitResponseView, \
-    MyResponsesListView, MyResponsesToAdsListView, ResponseDeleteView
+    MyResponsesListView, MyResponsesToAdsListView, ResponseDeleteView, accept_response
 
 urlpatterns = [
     path('', AdsList.as_view(), name='ads_list'),
@@ -15,4 +16,5 @@ urlpatterns = [
     path('my-responses/', MyResponsesListView.as_view(), name='my_responses'),
     path('responses-to-me/', MyResponsesToAdsListView.as_view(), name='responses_to_my_ads'),
     path('my-responses/<int:pk>/delete/', ResponseDeleteView.as_view(), name='response_delete'),
+    path('responses/<int:pk>/accept_response/', accept_response, name='accept_response'),
 ]

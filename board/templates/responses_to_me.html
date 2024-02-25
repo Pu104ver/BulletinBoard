@@ -1,0 +1,65 @@
+{% extends 'default.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Отклики на мои объявления</h1>
+    <form action="" method="get">
+        <div class="row align-items-end">
+            <div class="col-md-6">
+                {{ filter.form.as_p }}
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary btn-block">Применить фильтр</button>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" name="clear" class="btn btn-secondary btn-block">Сбросить фильтры</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    {% if responses %}
+        <ul class="list-unstyled">
+            {% for response in responses %}
+                <li class="mb-4">
+                    <p><strong>Объявление:</strong> <a href="{% url 'ads_detail' pk=response.ad.id %}">{{ response.ad.title }}</a></p>
+                    <p><strong>Пользователь:</strong> {{ response.user_profile }}</p>
+                    <p><strong>Отправлен:</strong> {{ response.created_at }}</p>
+                    <p><strong>Сообщение:</strong> {{ response.content }}</p>
+                    {% if response.accepted %}
+                        <p class="text-muted">Уже принят</p>
+                    {% else %}
+                        <a href="{% url 'accept_response' pk=response.id %}" class="btn btn-success">Принять</a>
+                    {% endif %}
+                </li>
+            {% empty %}
+                <p>У ваших объявлений нет откликов.</p>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>У ваших объявлений нет откликов.</p>
+    {% endif %}
+</div>
+
+<div class="pagination justify-content-center mt-4">
+    {% if page_obj.has_previous %}
+        <a href="?page=1" class="page-link">1</a>
+        {% if page_obj.previous_page_number != 1 %}
+            <span class="page-link">...</span>
+            <a href="?page={{ page_obj.previous_page_number }}" class="page-link">{{ page_obj.previous_page_number }}</a>
+        {% endif %}
+    {% endif %}
+
+    <span class="page-link active">[{{ page_obj.number }}]</span>
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="page-link">{{ page_obj.next_page_number }}</a>
+        {% if paginator.num_pages != page_obj.next_page_number %}
+            <span class="page-link">...</span>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">{{ page_obj.paginator.num_pages }}</a>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

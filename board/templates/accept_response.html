@@ -1,0 +1,28 @@
+{% extends 'default.html' %}
+
+{% block title %}
+    Принять отклик
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Отклик на объявление</h1>
+        <p>Информация об отклике:</p>
+        <ul>
+            <li><strong>Название объявления:</strong> {{ response.ad }}</li>
+            <li><strong>Отклик от пользователя:</strong> {{ response.user_profile }}</li>
+            <li><strong>Сообщение:</strong> {{ response.content }}</li>
+        </ul>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success" onclick="return confirm('Вы уверены, что хотите принять этот отклик?')">Принять отклик</button>
+            <a href="#" class="btn btn-secondary" onclick="goBack()">Отмена</a>
+        </form>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+{% endblock %}

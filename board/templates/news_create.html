@@ -6,15 +6,14 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Вход</h2>
+                    <h2 class="card-title">Создать новостную рассылку</h2>
                 </div>
                 <div class="card-body">
                     <form method="post">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <button type="submit" class="btn btn-primary">Войти</button>
-                        <button type="button" class="btn btn-secondary ml-2" onclick="goBack()">Отмена</button>
-
+                        <button type="submit" class="btn btn-primary">Создать</button>
+                        <button type="button" class="btn btn-secondary ml-2" onclick="goBack()">Назад</button>
                     </form>
                 </div>
             </div>

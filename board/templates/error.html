@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .error-container {
+            text-align: center;
+        }
+
+        h1 {
+            color: #dc3545;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .error-message {
+            color: #dc3545;
+            margin-bottom: 10px;
+        }
+
+        .error-message:nth-last-child(1) {
+            margin-bottom: 20px; /* Увеличиваем отступ после последнего сообщения */
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 8px 8px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px; /* Добавляем скругление краев */
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1>Error</h1>
+        {% if error_messages %}
+            <p class="error-message">{{ error_messages }}</p>
+        {% else %}
+            <p>Нет сообщений об ошибке.</p>
+        {% endif %}
+        <p>Назад на <button type="button" onclick="goBack()">страницу</button></p>
+    </div>
+</body>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+</html>

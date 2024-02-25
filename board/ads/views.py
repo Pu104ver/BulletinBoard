@@ -1,6 +1,5 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.core.mail import send_mail
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
@@ -8,7 +7,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django_filters.views import FilterView
 
 from .filters import ResponseFilter
-from .forms import ResponseForm, AdForm, UserAdsForm
+from .forms import ResponseForm, AdForm
 from .models import Ad, Response
 
 
@@ -38,6 +37,7 @@ class MyPostsListView(LoginRequiredMixin, ListView):
     ordering = '-created_at'
     template_name = 'user_ads.html'
     context_object_name = 'ads'
+    paginate_by = 6
 
     def get_queryset(self):
         return super().get_queryset().filter(user_profile=self.request.user.userprofile)
@@ -83,12 +83,14 @@ class ResponseDeleteView(LoginRequiredMixin, DeleteView):
 
 class SubmitResponseView(LoginRequiredMixin, View):
     def get(self, request, ad_id):
-        ad = Ad.objects.get(pk=ad_id)
+        ad = get_object_or_404(Ad, pk=ad_id)
+        existing_response = Response.objects.filter(ad=ad, user_profile=request.user.userprofile).exists()
+        if existing_response:
+            return render(request, 'error.html', {'error_messages': 'Вы уже оставили отклик на это объявление.'})
         form = ResponseForm()
         return render(request, 'submit_response.html', {'ad': ad, 'form': form})
 
     def post(self, request, ad_id):
-        # Получаем объявление по его идентификатору
         ad = get_object_or_404(Ad, pk=ad_id)
         form = ResponseForm(request.POST)
 
@@ -102,11 +104,6 @@ class SubmitResponseView(LoginRequiredMixin, View):
                 response = Response(ad=ad, user_profile=request.user.userprofile, content=content)
                 response.save()
                 messages.success(request, "Отклик успешно добавлен.")
-
-                # # Уведомление автора об отклике на его объявление
-                # send_mail_to_the_author_of_the_response(request, ad)
-                # # Уведомление отправителя о новом отклике с его аккаунта
-                # send_mail_to_the_sender_of_the_response(request, ad)
 
         return redirect('my_responses')
 
@@ -125,15 +122,32 @@ class MyResponsesListView(LoginRequiredMixin, ListView):
 
 class MyResponsesToAdsListView(LoginRequiredMixin, FilterView):
     model = Response
-    template_name = 'my_responses_to_ads.html'
+    template_name = 'responses_to_me.html'
     context_object_name = 'responses'
     filterset_class = ResponseFilter
     paginate_by = 3
 
     def get_queryset(self):
-        return Response.objects.filter(ad__user_profile=self.request.user.userprofile)
+        queryset = Response.objects.filter(ad__user_profile=self.request.user.userprofile)
+        return queryset.order_by('-created_at')
 
     def get(self, request, *args, **kwargs):
         if 'clear' in request.GET:
             return redirect(request.path)
         return super().get(request, *args, **kwargs)
+
+
+def accept_response(request, pk):
+    response = get_object_or_404(Response, id=pk)
+    if request.user.userprofile == response.ad.user_profile:
+        if response.accepted:
+            return render(request, 'error.html', {'error_messages': 'Отклик уже был принят.'})
+
+        if request.method == 'POST':
+            response.accepted = True
+            response.save()
+            return redirect('responses_to_my_ads')
+        else:
+            return render(request, 'accept_response.html', {'response': response})
+    else:
+        return render(request, 'access_denied.html')

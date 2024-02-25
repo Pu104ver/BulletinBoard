@@ -4,19 +4,58 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81744ebb-5b74-4074-a615-1097ce853419" name="Changes" comment="v 0.3">
-      <change afterPath="$PROJECT_DIR$/board/ads/templatetags/custom_filters.py" afterDir="false" />
+    <list default="true" id="81744ebb-5b74-4074-a615-1097ce853419" name="Changes" comment="v 0.4">
+      <change afterPath="$PROJECT_DIR$/board/ads/management/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/ads/management/commands/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/ads/management/commands/mycommand.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/ads/tasks.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/board/celery.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/news/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/news/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/news/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/news/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/news/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/news/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/news/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/news/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/news/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/templates/accept_response.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/templates/access_denied.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/templates/email/news_notification.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/templates/error.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/templates/news.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/templates/news_create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/templates/news_detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/templates/resend_confirmation_code.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/board/templates/subscriptions.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/accounts/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/accounts/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/accounts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/accounts/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/accounts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/accounts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/ads/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/ads/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/ads/filters.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/ads/filters.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/ads/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/ads/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/ads/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/ads/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/ads/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/ads/signals.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/ads/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/ads/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/ads/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/ads/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/board/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/board/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/board/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/board/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/board/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/board/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/board/static/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/templates/account/email/email_confirmation_message.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/board/templates/ad.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/ad.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/templates/ad_create.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/ad_create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/templates/ad_delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/ad_delete.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/templates/ad_update.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/ad_update.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/templates/ads.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/ads.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/templates/default.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/default.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/templates/my_responses.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/my_responses.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/templates/my_responses_to_ads.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/responses_to_me.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/templates/registration/confirm_code.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/registration/confirm_code.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/templates/registration/logged_out.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/registration/logout-confirm.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/registration/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/templates/registration/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/registration/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/board/templates/response_delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/response_delete.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/templates/submit_response.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/submit_response.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/board/templates/user_ads.html" beforeDir="false" afterPath="$PROJECT_DIR$/board/templates/user_ads.html" afterDir="false" />
     </list>
@@ -28,8 +67,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -63,7 +102,9 @@
       <recent name="$PROJECT_DIR$/board/static" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/board/ads" />
       <recent name="$PROJECT_DIR$/board" />
+      <recent name="$PROJECT_DIR$/board/media" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -106,13 +147,22 @@
       <option name="project" value="LOCAL" />
       <updated>1708556247230</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="v 0.4">
+      <option name="closed" value="true" />
+      <created>1708696415812</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1708696415812</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="v 0.1" />
     <MESSAGE value="v 0.2" />
     <MESSAGE value="v 0.3" />
-    <option name="LAST_COMMIT_MESSAGE" value="v 0.3" />
+    <MESSAGE value="v 0.4" />
+    <option name="LAST_COMMIT_MESSAGE" value="v 0.4" />
   </component>
 </project>

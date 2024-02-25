@@ -1,14 +1,33 @@
 {% extends 'default.html' %}
-{% block title %}Удалить объявление{% endblock %}
+
+{% block title %}
+    Удалить объявление
+{% endblock title %}
 
 {% block content %}
 <div class="container">
-    <h1>Удалить объявление</h1>
-    <p>Вы уверены, что хотите удалить это объявление?</p>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Да, удалить</button>
-        <a href="{% url 'ads_list' %}" class="btn btn-secondary">Отмена</a>
-    </form>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">Удалить объявление</h1>
+                    <p class="card-text">Вы уверены, что хотите удалить это объявление?</p>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-danger">Да, удалить</button>
+                            <button type="button" class="btn btn-secondary ml-2" onclick="goBack()">Отмена</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 {% endblock %}

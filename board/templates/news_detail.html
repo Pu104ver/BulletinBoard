@@ -1,0 +1,33 @@
+{% extends 'default.html' %}
+{% load tz %}
+
+{% block title %}
+    {{ news.title }}
+{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">{{ news.title }}</h2>
+                    <p class="card-text"><small class="text-muted">Автор: {{ news.author }}</small></p>
+                    <p class="card-text"><small class="text-muted">Дата публикации: {{ news.created_at|timezone:"Europe/Moscow"|date:"d F Y H:i" }}</small></p>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ news.content }}</p>
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary ml-2" onclick="goBack()">Назад</button>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+{% endblock content %}

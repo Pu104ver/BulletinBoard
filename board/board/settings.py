@@ -36,6 +36,7 @@ INSTALLED_APPS = [
 
     'ads',
     'accounts',
+    'news',
 
     'allauth',
     'allauth.account',
@@ -159,7 +160,7 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_FORMS = {"signup": "accounts.forms.CustomSignupForm"}
+# ACCOUNT_FORMS = {"signup": "accounts.forms.CustomSignupForm"}
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.yandex.ru'
@@ -173,6 +174,11 @@ DEFAULT_FROM_EMAIL = "kinopoisk.y4ndex3@yandex.ru"
 
 SERVER_EMAIL = "kinopoisk.y4ndex3@yandex.ru"
 
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

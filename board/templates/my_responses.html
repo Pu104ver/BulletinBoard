@@ -1,50 +1,57 @@
 {% extends 'default.html' %}
-{% block title %}Мои отклики{% endblock %}
+{% block title %}
+    Мои отклики
+{% endblock %}
 
 {% block content %}
-
-
 <div class="container">
     {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
+        <div class="messages">
+            <ul class="list-unstyled">
+                {% for message in messages %}
+                    <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+                        {{ message }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     {% endif %}
-    <h1>Мои отклики</h1>
-    <ul>
+    <h1 class="mt-4">Мои отклики</h1>
+    <ul class="list-unstyled">
         {% for response in responses %}
-            <li>
-                <p>Объявление: <a href="{% url 'ads_detail' pk=response.ad.id %}">{{ response.ad.title }}</a> [{{ response.ad.user_profile }}]</p>
-                <p>Отправлен: {{ response.created_at }}</p>
-                <p>Сообщение: {{ response.content }}</p>
-                <a href="{% url 'response_delete' pk=response.id %}" class="btn btn-danger">Отменить</a>
-
+            <li class="media my-4">
+                <div class="media-body">
+                    <h5 class="mt-0 mb-1">
+                        Объявление: <a href="{% url 'ads_detail' pk=response.ad.id %}">{{ response.ad.title }}</a> [{{ response.ad.user_profile }}]
+                    </h5>
+                    <p>Отправлен: {{ response.created_at }}</p>
+                    <p>Сообщение: {{ response.content }}</p>
+                    <a href="{% url 'response_delete' pk=response.id %}" class="btn btn-danger btn-sm">Отменить</a>
+                </div>
             </li>
         {% empty %}
-            <p>Откликов не найдено.</p>
+            <li>Откликов не найдено.</li>
         {% endfor %}
     </ul>
 </div>
-<div class="pagination justify-content-center">
+
+<nav class="pagination justify-content-center mt-4">
     {% if page_obj.has_previous %}
-        <a href="?page=1">1</a>
+        <a href="?page=1" class="page-link">1</a>
         {% if page_obj.previous_page_number != 1 %}
-            ...
-            <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+            <span class="page-link">...</span>
+            <a href="?page={{ page_obj.previous_page_number }}" class="page-link">{{ page_obj.previous_page_number }}</a>
         {% endif %}
     {% endif %}
 
-    {{ page_obj.number }}
+    <span class="page-link active">[{{ page_obj.number }}]</span>
 
     {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+        <a href="?page={{ page_obj.next_page_number }}" class="page-link">{{ page_obj.next_page_number }}</a>
         {% if paginator.num_pages != page_obj.next_page_number %}
-            ...
-            <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+            <span class="page-link">...</span>
+            <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">{{ page_obj.paginator.num_pages }}</a>
         {% endif %}
     {% endif %}
-</div>
-
+</nav>
 {% endblock %}

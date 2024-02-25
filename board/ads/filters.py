@@ -2,12 +2,11 @@ import django_filters
 from .models import Ad
 
 
-
 class ResponseFilter(django_filters.FilterSet):
     def __init__(self, data=None, queryset=None, *, request=None, **kwargs):
         super(ResponseFilter, self).__init__(data=data, queryset=queryset, **kwargs)
         if request:
-            user = request.user  # Получаем текущего пользователя из запроса
+            user = request.user
             self.filters['ads'].queryset = Ad.objects.filter(responses__ad__user_profile=user.userprofile).distinct()
 
     ads = django_filters.ModelChoiceFilter(
@@ -19,6 +18,3 @@ class ResponseFilter(django_filters.FilterSet):
     class Meta:
         model = Ad
         fields = {}
-
-
-

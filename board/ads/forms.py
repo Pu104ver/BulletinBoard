@@ -1,5 +1,4 @@
 from ckeditor_uploader.fields import RichTextUploadingField
-from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 from django import forms
 from .models import Response, Ad

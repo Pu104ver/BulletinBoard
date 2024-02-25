@@ -2,7 +2,7 @@
 {% load tz %}
 
 {% block title %}
-Объявление
+    Объявление
 {% endblock title %}
 
 {% block content %}
@@ -16,10 +16,11 @@
                     <p class="card-text"><small class="text-muted">Дата публикации: {{ ad.created_at|timezone:"Europe/Moscow"|date:"d F Y H:i" }}</small></p>
                     <p class="card-text">Категория: {{ ad.category }}</p>
                     <p class="card-text">{{ ad.content|safe }}</p>
+                    <br>
                     {% if not ad.user_profile == request.user.userprofile %}
                         {% if user_response %}
                             <p class="text-muted">Вы уже оставляли отклик на это объявление
-                                <a href="{% url 'response_delete' pk=user_response.id %}" class="btn btn-danger">Отменить</a>
+                                <a href="{% url 'response_delete' pk=user_response.id %}" class="btn btn-danger ml-2">Отменить</a>
                             </p>
                         {% else %}
                             <a href="{% url 'submit_response' ad.id %}" class="btn btn-primary">Откликнуться</a>
@@ -27,9 +28,16 @@
                     {% else %}
                         <p class="text-muted">Это ваше объявление</p>
                     {% endif %}
+                    <button type="button" class="btn btn-secondary ml-2" onclick="goBack()">Назад</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 {% endblock content %}

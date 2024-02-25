@@ -1,0 +1,16 @@
+{% extends 'default.html' %}
+{% block title %}
+    Принять отклик
+{% endblock %}
+
+{% block content %}
+    <h1>Доступ запрещен</h1>
+    <p>У вас нет прав на принятие этого отклика.</p>
+    <button type="button" onclick="goBack()">Отмена</button>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+{% endblock %}

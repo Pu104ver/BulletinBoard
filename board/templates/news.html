@@ -1,0 +1,53 @@
+{% extends 'default.html' %}
+{% load custom_filters %}
+
+{% block title %}Новости{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <p>Все новости</p>
+        {% if perms.ads.add_news %}
+        <a href="{% url 'news_create' %}" class="btn btn-success mb-3">Создать новостную рассылку</a>
+        {% endif %}
+        {% if news %}
+            <div class="row">
+                {% for new in news %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ new.title }}</h5>
+                            <p class="card-text"><small class="text-muted">Автор: {{ new.author }}</small></p>
+                            <p class="card-text">{{ new.content|limit_content:100 }}</p>
+                            <a href="{% url 'news_detail' pk=new.id %}" class="btn btn-primary">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Новостей нет.</p>
+        {% endif %}
+    </div>
+
+    <div class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">1</a>
+            {% if page_obj.previous_page_number != 1 %}
+                ...
+                <a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+            {% endif %}
+        {% endif %}
+
+        [{{ page_obj.number }}]
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+            {% if paginator.num_pages != page_obj.next_page_number %}
+                ...
+                <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+            {% endif %}
+        {% endif %}
+    </div>
+
+{% endblock %}
+
