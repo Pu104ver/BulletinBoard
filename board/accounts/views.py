@@ -33,14 +33,14 @@ def register(request):
         if User.objects.filter(email=email).exists():
             errors.append('Пользователь с таким адресом электронной почты уже существует')
 
-        if errors:
-            return render(request, 'registration/register.html', {'errors': errors})
-
         try:
             validate_password(password)
+
         except ValidationError as e:
-            error_message = ', '.join(e.messages)
-            return render(request, 'registration/register.html', {'error': error_message})
+            errors.extend(e.messages)
+
+        if errors:
+            return render(request, 'registration/register.html', {'errors': errors})
 
         confirmation_code = random.randint(100000, 999999)
 
