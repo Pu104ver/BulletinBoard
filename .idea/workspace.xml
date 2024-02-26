@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81744ebb-5b74-4074-a615-1097ce853419" name="Changes" comment="v 1.0">
-      <change beforePath="$PROJECT_DIR$/board/media/board/uploads/2024/02/22/image.png" beforeDir="false" afterPath="$PROJECT_DIR$/board/media/uploads/2024/02/22/image.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/media/board/uploads/2024/02/22/image_3fj4lhZ.png" beforeDir="false" afterPath="$PROJECT_DIR$/board/media/uploads/2024/02/22/image_3fj4lhZ.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/media/board/uploads/2024/02/22/image_IqCNFKQ.png" beforeDir="false" afterPath="$PROJECT_DIR$/board/media/uploads/2024/02/22/image_IqCNFKQ.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/media/board/uploads/2024/02/22/image_JblWugc.png" beforeDir="false" afterPath="$PROJECT_DIR$/board/media/uploads/2024/02/22/image_JblWugc.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/media/board/uploads/2024/02/22/image_K97igfj.png" beforeDir="false" afterPath="$PROJECT_DIR$/board/media/uploads/2024/02/22/image_K97igfj.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/media/board/uploads/2024/02/22/image_g2VPlar.png" beforeDir="false" afterPath="$PROJECT_DIR$/board/media/uploads/2024/02/22/image_g2VPlar.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/media/board/uploads/2024/02/22/image_wT2Vq5x.png" beforeDir="false" afterPath="$PROJECT_DIR$/board/media/uploads/2024/02/22/image_wT2Vq5x.png" afterDir="false" />
+    <list default="true" id="81744ebb-5b74-4074-a615-1097ce853419" name="Changes" comment="v 1.0.1">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +50,7 @@
       <recent name="$PROJECT_DIR$/board/static" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/board/media/uploads/2024/02" />
       <recent name="$PROJECT_DIR$/board/ads" />
       <recent name="$PROJECT_DIR$/board" />
       <recent name="$PROJECT_DIR$/board/media" />
@@ -117,7 +112,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708894614269</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="v 1.0.1">
+      <option name="closed" value="true" />
+      <created>1708895044766</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1708895044766</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -126,6 +129,7 @@
     <MESSAGE value="v 0.3" />
     <MESSAGE value="v 0.4" />
     <MESSAGE value="v 1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="v 1.0" />
+    <MESSAGE value="v 1.0.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="v 1.0.1" />
   </component>
 </project>
