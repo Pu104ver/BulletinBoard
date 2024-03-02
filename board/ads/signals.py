@@ -12,8 +12,9 @@ from .tasks import task_send_hello_mail, task_send_news_email, task_send_mail_to
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
-        common_users = Group.objects.get(name="common users")
-        instance.groups.add(common_users)
+        common_users = Group.objects.get_or_create(name="common users")
+        if not common_users:
+            instance.groups.add(common_users)
         task_send_hello_mail(instance.username, instance.email)
 
 
