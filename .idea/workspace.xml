@@ -4,18 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81744ebb-5b74-4074-a615-1097ce853419" name="Changes" comment="v 1.0.1">
-      <change afterPath="$PROJECT_DIR$/board/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/board/docker-compose.yml" afterDir="false" />
+    <list default="true" id="81744ebb-5b74-4074-a615-1097ce853419" name="Changes" comment="add docker and update user groups">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/ads/signals.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/ads/signals.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/board/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/config/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/board/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/config/asgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/board/celery.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/config/celery.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/board/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/config/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/board/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/config/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/board/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/config/wsgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/board/manage.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +147,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709220304769</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add docker and update user groups">
+      <option name="closed" value="true" />
+      <created>1709422700889</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1709422700889</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -168,6 +166,7 @@
     <MESSAGE value="v 1.0" />
     <MESSAGE value="using sqlite3" />
     <MESSAGE value="v 1.0.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="v 1.0.1" />
+    <MESSAGE value="add docker and update user groups" />
+    <option name="LAST_COMMIT_MESSAGE" value="add docker and update user groups" />
   </component>
 </project>
